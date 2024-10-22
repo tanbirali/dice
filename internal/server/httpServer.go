@@ -356,7 +356,7 @@ func (h *HTTPServer) DiceHTTPSearchHandler(w http.ResponseWriter, r *http.Reques
 		q = ""
 	}
 	matchingCommands := []Command{}
-	commands, err := dice.Cmdable.CommandList(ctx,q )
+	commands, err := dice.Cmdable.CommandList(ctx, q )
 	if err != nil {
 		http.Error(w, "Could not load commands from Dice SDK", http.StatusInternalServerError)
 		return

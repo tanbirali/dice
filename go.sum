@@ -30,6 +30,8 @@ github.com/dgryski/go-metro v0.0.0-20180109044635-280f6062b5bc h1:8WFBn63wegobsY
 github.com/dgryski/go-metro v0.0.0-20180109044635-280f6062b5bc/go.mod h1:c9O8+fpSOX1DM8cPNSkX/qsBWdkD4yd2dpciOWQjpBw=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/rVNCu3HqELle0jiPLLBs70cWOduZpkS1E78=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cuUVRXasLTGF7a8hSLbxyZXjz+1KgoB3wDUb6vlszIc=
+github.com/dicedb/dicedb-go v0.0.0-20241019185135-cb611decb31b h1:AoSPJbfSWBLQQRfe/hdejb2OCzwiNLLilnDsHinqI7g=
+github.com/dicedb/dicedb-go v0.0.0-20241019185135-cb611decb31b/go.mod h1:p7x5/3S6wBEmiRMwxavj1I1P1xsSVQS6fcSbeai5ic4=
 github.com/dicedb/go-dice v0.0.0-20240820180649-d97f15fca831 h1:Cqyj9WCtoobN6++bFbDSe27q94SPwJD9Z0wmu+SDRuk=
 github.com/dicedb/go-dice v0.0.0-20240820180649-d97f15fca831/go.mod h1:8+VZrr14c2LW8fW4tWZ8Bv3P2lfvlg+PpsSn5cWWuiQ=
 github.com/frankban/quicktest v1.14.6 h1:7Xjx+VpznH+oBnejlPUj8oUpdxnVs4f8XU8WnHkI4W8=
