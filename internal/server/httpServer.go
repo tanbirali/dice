@@ -6,10 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"hash/crc32"
-	"io/ioutil"
 	"log/slog"
 	"net/http"
-	"os"
 	"strings"
 	"sync"
 	"time"
@@ -22,6 +20,7 @@ import (
 	"github.com/dicedb/dice/internal/ops"
 	"github.com/dicedb/dice/internal/server/utils"
 	"github.com/dicedb/dice/internal/shard"
+	dice "github.com/dicedb/dicedb-go"
 )
 
 const Abort = "ABORT"
@@ -345,29 +344,9 @@ func generateUniqueInt32(r *http.Request) uint32 {
 	// Hash the string using CRC32 and cast it to an int32
 	return crc32.ChecksumIEEE([]byte(sb.String()))
 }
-func LoadCommands(filePath string) ([]Command, error) {
-	// Open the JSON file
-	file, err := os.Open(filePath)
-	if err != nil {
-		return nil, fmt.Errorf("could not open file: %w", err)
-	}
-	defer file.Close()
 
-	// Read the file contents
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		return nil, fmt.Errorf("could not read file: %w", err)
-	}
-
-	// Parse the JSON into a slice of Command structs
-	var commands []Command
-	if err := json.Unmarshal(data, &commands); err != nil {
-		return nil, fmt.Errorf("could not unmarshal JSON: %w", err)
-	}
-
-	return commands, nil
-}
 func (h *HTTPServer) DiceHTTPSearchHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := context.Background()
 	q := r.URL.Query().Get("q")
 	if q == "" {
 		http.Error(w, "Missing query parameter 'q' ", http.StatusBadRequest)
@@ -377,9 +356,9 @@ func (h *HTTPServer) DiceHTTPSearchHandler(w http.ResponseWriter, r *http.Reques
 		q = ""
 	}
 	matchingCommands := []Command{}
-	commands, err := LoadCommands("../eval/commands.go")
+	commands, err := dice.Cmdable.CommandList(ctx,q )
 	if err != nil {
-		http.Error(w, "Could not load commands", http.StatusInternalServerError)
+		http.Error(w, "Could not load commands from Dice SDK", http.StatusInternalServerError)
 		return
 	}
 
